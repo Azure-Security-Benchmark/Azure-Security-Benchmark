@@ -1,0 +1,6 @@
+Audit (Azure Portal/GUI – HDInsight Cluster):
+1.	Determine if your HDInsight cluster is connected to a Vnet.
+	a.	After logging in to the Azure portal, navigate to the "HDInsight clusters" service.
+	b.	Click the cluster you wish to inspect.
+	c.	Under "Settings", select "Properties"
+	d.	Check that Properties includes a field with name "Virtual Network" followed by the name of a subnet. If Properties does not contain a field named "Virtual Network" then the HDInsight Cluster needs to be remediated.
