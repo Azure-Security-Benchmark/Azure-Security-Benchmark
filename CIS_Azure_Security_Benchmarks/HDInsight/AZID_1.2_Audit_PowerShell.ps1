@@ -1,22 +1,21 @@
-# Get the Azure HDInsight clusters associated with the current subscription
-$HDIclusters = Get-AzHDInsightCluster
+$nsgNAme  = "myHdiNsg"               # Pre-existing, this is the NSG attached to your HDInsight's subnet
+$nwName   = "NetworkWatcher_eastus2" # Pre-existing, Network Watcher for the region HDInsight has been deployed into
+$nsg      = Get-AzNetworkSecurityGroup -Name $nsgNAme
+$nw       = Get-AzNetworkWatcher -Name $nwName
 
-# If clusters exist, iterate through them and check for Vnet association
-if ($HDIclusters -ne $null) {
-    foreach ($cluster in ($HDIclusters)) {
-        $clusterObject = Get-AzResource -ResourceId $cluster.Id
-        # Check if the current cluster is not associated with a Vnet
-        if ($clusterObject.Properties.computeProfile.roles[0].virtualNetworkProfile -eq $null) {
-            # Clusters not associated with a Vnet will be displayed with a green background
-            Write-Host "Cluster '$($cluster.Name)' is not secured within a Vnet." -BackgroundColor Red
-        }
-        else {
-            # Clusters associated with a Vnet will be displayed with a green background
-            Write-Host "Cluster '$($cluster.Name)' has been secured within a Vnet." -BackgroundColor Green -ForegroundColor Black
-        }
-    }
+# Get the Flow Log status for the NSG attached to HDInsight's Subnet
+$flowLogStatus_parameters = @{
+    NetworkWatcher = $nw
+    TargetResourceId = $nsg.Id
 }
+$flowLogStatus = (Get-AzNetworkWatcherFlowLogStatus @flowLogStatus_parameters).Enabled
+
+# If Flow Logs are enabled, display with a green background
+if ($flowLogStatus -eq $true) {
+    Write-Host "Flow Logs on NSG '$($nsg.Name)' are Enabled" -BackgroundColor Green -ForegroundColor Black
+}
+
+# If Flow Logs are disabled, display with a red background
 else {
-    # If there are no HDInsight clusters within the current subscription, notify user
-    Write-Host "No HDInsight clsuters exist on current subscription." -BackgroundColor Yellow -ForegroundColor Black
+    Write-Host "Flow Logs on NSG '$($nsg.Name)' are Disabled" -BackgroundColor Red
 }
