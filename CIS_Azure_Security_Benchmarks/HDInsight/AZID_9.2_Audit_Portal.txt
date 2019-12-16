@@ -4,3 +4,4 @@ Audit (Azure Portal/GUI – Enable NSG Flow Logs on NSGs associated with your HD
 	b.	Click the NSG associated with your HDInsight cluster.
 	c.	On the left, click "NSG Flow Logs", and then click the name of your NSG that appears on the right.
 	d.	If the status of the Flow Log configuration is "Off", it needs to be turned on.
+	e.	If the status of the Flow Log configuration is "On", Flow Logs are being recorded.
