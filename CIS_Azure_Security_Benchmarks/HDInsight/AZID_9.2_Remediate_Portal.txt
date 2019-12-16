@@ -1,4 +1,4 @@
-Audit (Azure Portal/GUI – Azure Security Center (ASC) Network Recommendations for HDInsight cluster):
+Remediate (Azure Portal/GUI – Azure Security Center (ASC) Network Recommendations for HDInsight cluster):
 1.	Observe and Remediate Azure Security Center Network Recommendations.
 	a.	After logging in to the Azure portal, navigate to the "Azure Security Center" service.
 	b.	Under "Resource Security Hygiene", click "Recommendations".
@@ -6,7 +6,7 @@ Audit (Azure Portal/GUI – Azure Security Center (ASC) Network Recommendations 
 	d.	Observe the recommendations. Remediate any recommendations related to your HDInsight cluster configuration.
 	e.	Preferably, remediate all other ASC network recommendations.
 
-Audit (Azure Portal/GUI – Enable NSG Flow Logs on NSGs associated with your HDInsight cluster's Subnet):
+Remediate (Azure Portal/GUI – Enable NSG Flow Logs on NSGs associated with your HDInsight cluster's Subnet):
 1.	Observe and Remediate Azure Security Center Network Recommendations.
 	a.	After logging in to the Azure portal, navigate to the "Network Security Group" service.
 	b.	Click the NSG associated with your HDInsight cluster.
