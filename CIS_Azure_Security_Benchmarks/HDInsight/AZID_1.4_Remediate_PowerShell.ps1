@@ -1,27 +1,44 @@
-$nsgNAme  = "myHdiNsg"               # Pre-existing, this is the NSG attached to your HDInsight's subnet
-$nwName   = "NetworkWatcher_eastus2" # Pre-existing, Network Watcher for the region HDInsight has been deployed into
-$rgName   = "my-hdi-rg"              # Pre-existing, Name of the Resource Group your Flow Log Storage Account lives in
-$saName   = "myhdistoragex"          # Pre-existing, Name of the Storage Account to hold your Flow Logs
+$vnetName = "myHdiVnet"         # Pre-existing, this is the name of the Vnet your HDinsight has been deployed into
+$rgName   = "my-hdi-rg"         # Pre-existing, this is the resource group the above Vnet is in
+$planName = "MyNewDdosProtPlan" # Will be created, this will be the name of your new Ddos Protection Plan
+$location = "eastus"            # Location/region the Ddos protection plan will be created in
 
-$nsg = Get-AzNetworkSecurityGroup -Name $nsgName
-$nw  = Get-AzNetworkWatcher       -Name $nwName
-$sa  = Get-AzStorageAccount       -Name $saName -ResourceGroupName $rgName
-
-# Get the Flow Log status for the NSG attached to HDInsight's Subnet
-$flowLogStatus_parameters = @{
-    NetworkWatcher   = $nw
-    TargetResourceId = $nsg.Id
-    EnableFlowLog    = $true   # Set to $false to disable Flow Logs
-    StorageAccountId = $sa.Id
+# Create a Ddos Protection Plan
+$plan_parameters = @{
+    ResourceGroupName = $rgName
+    Name              = $planName
+    Location          = $location
 }
-$flowLogStatus = Set-AzNetworkWatcherConfigFlowLog @flowLogStatus_parameters
+$ddosProtPlan = New-AzDdosProtectionPlan @plan_parameters
 
-# If Flow Logs are enabled, display with a green background
-if ($flowLogStatus.Enabled -eq $true) {
-    Write-Host "Flow Logs on NSG '$($nsg.Name)' are now Enabled" -BackgroundColor Green -ForegroundColor Black
+# Get the Vnet object your HDinsight cluster is deployed into that you will apply the protection plan to
+$vnet_parameters = @{
+    Name          = $vnetName
+    ResourceGroup = $rgName
+}
+$vnet = Get-AzVirtualNetwork @vnet_parameters
+
+# Insert your new Ddos Protection Plan's ID into your HDInsight Vnet
+$vnet.DdosProtectionPlan = @{Id = $ddosProtPlan.Id}
+
+# Set the Vnet's Protection Plan enabled property to "True"
+$vnet.EnableDdosProtection = $true
+
+# Update your Vnet with the new settings
+Set-AzVirtualNetwork -VirtualNetwork $vnet
+
+# Re-instantiate the Vnet object to ensure the Ddos Protection Plan has been applied
+$vnet = Get-AzVirtualNetwork @vnet_parameters
+
+# If DDOS protection plan exists on the Vnet, display with a green background
+if ($vnet.DdosProtectionPlan -ne $null) {
+
+    # Get the name of the Ddos Protection Plan in use
+    $ddosProtectionPlanName = (Get-AzResource -ResourceId $vnet.DdosProtectionPlan.Id).Name
+    Write-Host "Ddos Protection Plan '$($ddosProtectionPlanName)' is Enabled for Vnet '$($vnet.Name)'" -BackgroundColor Green -ForegroundColor Black
 }
 
-# If Flow Logs are disabled, display with a red background
+# If DDOS protection plan does not exist on the Vnet, display with a red background
 else {
-    Write-Host "Flow Logs on NSG '$($nsg.Name)' are now Disabled" -BackgroundColor Red
+    Write-Host "Ddos Protection Plan is not Enabled for Vnet '$($vnet.Name)'" -BackgroundColor Red
 }

@@ -8,7 +8,6 @@ $vnet_parameters = @{
 }
 $vnet = Get-AzVirtualNetwork @vnet_parameters
 
-
 # If DDOS protection plan exists on the Vnet, display with a green background
 if ($vnet.DdosProtectionPlan -ne $null) {
 
