@@ -1,17 +1,15 @@
-Remediate (Azure Portal/GUI – Azure Security Center (ASC) Network Recommendations for HDInsight cluster):
-1.	Observe and Remediate Azure Security Center Network Recommendations.
-	a.	After logging in to the Azure portal, navigate to the "Azure Security Center" service.
-	b.	Under "Resource Security Hygiene", click "Recommendations".
-	c.	Toward the top of the screen, click "Networking".
-	d.	Observe the recommendations. Remediate any recommendations related to your HDInsight cluster configuration.
-	e.	Preferably, remediate all other ASC network recommendations.
+Remediate (Azure Portal/GUI – Create a Standard DDoS Protection plan and attach it to the Virtual Network associated with your HDInsight cluster):
 
-Remediate (Azure Portal/GUI – Enable NSG Flow Logs on NSGs associated with your HDInsight cluster's Subnet):
-1.	Observe and Remediate Azure Security Center Network Recommendations.
-	a.	After logging in to the Azure portal, navigate to the "Network Security Group" service.
-	b.	Click the NSG associated with your HDInsight cluster.
-	c.	On the left, click "NSG Flow Logs", and then click the name of your NSG that appears on the right.
-	d.	Change the status of the Flow Log configuration to "On".
-	e.	Select a Storage Account to store the logs.
-	f.	Select a retention period.
-	g.	Click "Save"
+1.	Create a Standard DDoS Protection plan.
+	a.	After logging in to the Azure portal, navigate to the "Ddos Protection Plans" service.
+	b.	Click "+ Add" at the top to add a new DDoS Protection Plan.
+	c.	Chose a name and geographic location for your Protection Plan. 
+	d.	Create the plan.
+
+2.	Attach the newly created DDoS Protection Plan to the Virtual Network associated with your HDInsight cluster
+	a.	After logging in to the Azure portal, navigate to the "Virtual Networks" service.
+	b.	Click the Virtual Network associated with your HDInsight cluster.
+	c.	On the left, click "DDoS Protection".
+	d.	Select the "Standard" radio button.
+	e.	On the "DDoS Protecton Plan" drop-down menu, select the DDoS Protection Plan you created in Step 1
+	f.	Click "Save".

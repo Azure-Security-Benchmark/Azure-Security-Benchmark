@@ -1,4 +1,5 @@
 Audit (Azure Portal/GUI – HDInsight cluster):
+
 1.	Determine if your HDInsight cluster is connected to a Vnet.
 	a.	After logging in to the Azure portal, navigate to the "HDInsight clusters" service.
 	b.	Click the cluster you wish to inspect.

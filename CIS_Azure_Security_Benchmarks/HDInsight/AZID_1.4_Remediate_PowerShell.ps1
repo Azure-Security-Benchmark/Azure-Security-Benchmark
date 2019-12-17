@@ -1,4 +1,4 @@
-$vnetName = "myHdiVnet"         # Pre-existing, this is the name of the Vnet your HDinsight has been deployed into
+$vnetName = "myHdiVnet"         # Pre-existing, this is the name of the Vnet your HDinsight cluster has been deployed into
 $rgName   = "my-hdi-rg"         # Pre-existing, this is the resource group the above Vnet is in
 $planName = "MyNewDdosProtPlan" # Will be created, this will be the name of your new Ddos Protection Plan
 $location = "eastus"            # Location/region the Ddos protection plan will be created in

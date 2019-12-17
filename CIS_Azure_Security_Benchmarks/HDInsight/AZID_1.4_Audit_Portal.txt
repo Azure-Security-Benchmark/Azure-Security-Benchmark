@@ -1,7 +1,8 @@
-Audit (Azure Portal/GUI – Enable NSG Flow Logs on NSGs associated with your HDInsight cluster's Subnet):
-1.	Observe and Remediate Azure Security Center Network Recommendations.
-	a.	After logging in to the Azure portal, navigate to the "Network Security Group" service.
-	b.	Click the NSG associated with your HDInsight cluster.
-	c.	On the left, click "NSG Flow Logs", and then click the name of your NSG that appears on the right.
-	d.	If the status of the Flow Log configuration is "Off", it needs to be turned on.
-	e.	If the status of the Flow Log configuration is "On", Flow Logs are being recorded.
+Audit (Azure Portal/GUI – Enable DDoS Standard protection on the Virtual Network associated with your HDInsight cluster):
+
+1.	Ensure DDoS Standard protection has been enabled.
+	a.	After logging in to the Azure portal, navigate to the "Virtual Networks" service.
+	b.	Click the Virtual Network associated with your HDInsight cluster.
+	c.	On the left, click "DDoS Protection".
+	d.	If DDoS Protection is set to "Basic", Standard Protection is disabled and needs to be enabled.
+	e.	If DDoS Protection is set to "Standard", no further configuration is necessary.

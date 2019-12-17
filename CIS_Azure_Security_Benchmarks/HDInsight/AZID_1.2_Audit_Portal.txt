@@ -1,4 +1,5 @@
 Audit (Azure Portal/GUI – Enable NSG Flow Logs on NSGs associated with your HDInsight cluster's Subnet):
+
 1.	Observe and Remediate Azure Security Center Network Recommendations.
 	a.	After logging in to the Azure portal, navigate to the "Network Security Group" service.
 	b.	Click the NSG associated with your HDInsight cluster.
