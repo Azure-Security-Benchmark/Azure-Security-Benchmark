@@ -14,7 +14,7 @@ There is no way apply a Vnet to an existing HDInsight cluster — a new cluster 
 	b.	Click "+ Add" at the top to create a new Vnet
 	c.	Create a new Vnet and subnet with desired settings. Take note of the new Vnet’s name
 
-3.	Attach the subnet you created in Step 1 to your newly created Subnet within the Vnet
+3.	Attach the subnet you created in Step 1 to your newly created Subnet within the Vnet:
 	a.	Navigate to the Virtual Network you created in Step 2.
 	b.	Click "Subnets" and select the Subnet you wish to attach your NSG to.
 	c.	Under the "Network Security Group" drop-down menu, select the NSG you created in Step 1.

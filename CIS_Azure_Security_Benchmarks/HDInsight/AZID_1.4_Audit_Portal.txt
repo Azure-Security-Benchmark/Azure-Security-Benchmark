@@ -1,6 +1,6 @@
 Audit (Azure Portal/GUI – Enable DDoS Standard protection on the Virtual Network associated with your HDInsight cluster):
 
-1.	Ensure DDoS Standard protection has been enabled.
+1.	Ensure DDoS Standard protection has been enabled:
 	a.	After logging in to the Azure portal, navigate to the "Virtual Networks" service.
 	b.	Click the Virtual Network associated with your HDInsight cluster.
 	c.	On the left, click "DDoS Protection".

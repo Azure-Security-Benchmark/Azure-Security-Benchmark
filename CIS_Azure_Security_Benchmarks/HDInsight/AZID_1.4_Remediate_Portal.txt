@@ -1,12 +1,12 @@
 Remediate (Azure Portal/GUI – Create a Standard DDoS Protection plan and attach it to the Virtual Network associated with your HDInsight cluster):
 
-1.	Create a Standard DDoS Protection plan.
+1.	Create a Standard DDoS Protection plan:
 	a.	After logging in to the Azure portal, navigate to the "Ddos Protection Plans" service.
 	b.	Click "+ Add" at the top to add a new DDoS Protection Plan.
 	c.	Chose a name and geographic location for your Protection Plan. 
 	d.	Create the plan.
 
-2.	Attach the newly created DDoS Protection Plan to the Virtual Network associated with your HDInsight cluster
+2.	Attach the newly created DDoS Protection Plan to the Virtual Network associated with your HDInsight cluster:
 	a.	After logging in to the Azure portal, navigate to the "Virtual Networks" service.
 	b.	Click the Virtual Network associated with your HDInsight cluster.
 	c.	On the left, click "DDoS Protection".
